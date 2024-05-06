@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public class CustomerResponse {
 
+    private final Long id;
     private final String name;
     private final String customerGroup;
     private final String phone;
@@ -17,9 +18,10 @@ public class CustomerResponse {
     private final LocalDate birth;
 
     @Builder
-    public CustomerResponse(String name, String customerGroup, String phone, String address,
+    public CustomerResponse(Long id, String name, String customerGroup, String phone, String address,
             String username,
             String memo, String gender, LocalDate birth) {
+        this.id = id;
         this.name = name;
         this.customerGroup = customerGroup;
         this.phone = phone;

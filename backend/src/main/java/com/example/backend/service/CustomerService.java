@@ -58,6 +58,7 @@ public class CustomerService {
             List<Customer> customers) {
         for (Customer customer : customers) {
             CustomerResponse customerResponse = CustomerResponse.builder()
+                    .id(customer.getId())
                     .name(customer.getName())
                     .phone(customer.getPhone())
                     .customerGroup(customer.getCustomerGroup())

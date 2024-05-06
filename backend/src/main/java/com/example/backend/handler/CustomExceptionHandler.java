@@ -1,7 +1,7 @@
 package com.example.backend.handler;
 
-import com.example.backend.exception.customer.customer.CustomerNotFoundException;
-import com.example.backend.exception.customer.user.UserNotFoundException;
+import com.example.backend.exception.customer.CustomerNotFoundException;
+import com.example.backend.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

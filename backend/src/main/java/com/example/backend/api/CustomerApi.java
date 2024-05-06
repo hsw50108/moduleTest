@@ -39,7 +39,7 @@ public class CustomerApi {
     }
 
     // 고객 정보 수정 api
-    @PatchMapping("/{customerId}/edit")
+    @PatchMapping("/{customerId}")
     public void editCustomer(@PathVariable Long customerId,
            @RequestBody UpdateCustomerDetailRequest updateCustomerDetailRequest) {
         customerService.updateCustomerDetail(customerId, updateCustomerDetailRequest);

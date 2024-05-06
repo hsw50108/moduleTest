@@ -4,7 +4,8 @@ import com.example.backend.api.request.UpdateCustomerDetailRequest;
 import com.example.backend.api.response.CustomerResponse;
 import com.example.backend.entity.Customer;
 import com.example.backend.entity.User;
-import com.example.backend.exception.customer.CustomerNotFoundException;
+import com.example.backend.exception.customer.customer.CustomerNotFoundException;
+import com.example.backend.exception.customer.user.UserNotFoundException;
 import com.example.backend.repository.CustomerRepository;
 import com.example.backend.repository.UserRepository;
 import java.util.ArrayList;
@@ -31,14 +32,26 @@ public class CustomerService {
     public List<CustomerResponse> findByUsername(String username) {
         List<CustomerResponse> customerResponses = new ArrayList<>();
         User user = userRepository.findByName(username);
+
+        if (user == null) {
+            throw new UserNotFoundException("찾는 담당자가 없습니다.");
+        }
+
         List<Customer> customers = customerRepository.findCustomerByUser(user);
+
         convertedToDto(customerResponses, customers);
+
         return customerResponses;
     }
 
     public List<CustomerResponse> findByCustomerGroup(String customerGroup) {
         List<CustomerResponse> customerResponses = new ArrayList<>();
         List<Customer> customers = customerRepository.findByCustomerGroup(customerGroup);
+
+        if (customers.isEmpty()) {
+            throw new CustomerNotFoundException("찾는 고객등급이 없습니다.");
+        }
+
         convertedToDto(customerResponses, customers);
         return customerResponses;
     }

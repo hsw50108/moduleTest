@@ -1,11 +1,14 @@
 package com.example.backend.api;
 
+import com.example.backend.api.request.UpdateCustomerDetailRequest;
 import com.example.backend.api.response.CustomerResponse;
 import com.example.backend.service.CustomerService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,8 +33,16 @@ public class CustomerApi {
 
     // 고객 조회 by 그룹별
     @GetMapping("/group/{customerGroup}")
-    public List<CustomerResponse> customerResponseByCustomerGroup(@PathVariable String customerGroup) {
+    public List<CustomerResponse> customerResponseByCustomerGroup(
+            @PathVariable String customerGroup) {
         return customerService.findByCustomerGroup(customerGroup);
+    }
+
+    // 고객 정보 수정 api
+    @PatchMapping("/{customerId}/edit")
+    public void editCustomer(@PathVariable Long customerId,
+           @RequestBody UpdateCustomerDetailRequest updateCustomerDetailRequest) {
+        customerService.updateCustomerDetail(customerId, updateCustomerDetailRequest);
     }
 
 

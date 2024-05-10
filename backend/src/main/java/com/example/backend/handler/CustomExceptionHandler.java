@@ -1,5 +1,6 @@
 package com.example.backend.handler;
 
+import com.example.backend.exception.board.BoardNotFoundException;
 import com.example.backend.exception.customer.CustomerNotFoundException;
 import com.example.backend.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,11 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUsernameNotFoundException(UserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(BoardNotFoundException.class)
+    public ResponseEntity<String> handleBoardNotFoundException(BoardNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

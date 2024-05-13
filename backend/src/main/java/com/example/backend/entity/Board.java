@@ -17,10 +17,10 @@ public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
     private String content;
+
+
 
     @Builder
     public Board(Long id, String title, String content) {

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class BoardService {
 
+    public static final String NOT_FOUND_BOARD_MESSAGE = "찾는 게시글이 없습니다.";
     private final BoardRepository boardRepository;
 
     public List<BoardResponse> findAllBoard() {
@@ -36,7 +37,7 @@ public class BoardService {
     @Transactional
     public BoardResponseWithId findBoardById(Long boardId) {
         Board board = boardRepository.findById(boardId)
-                .orElseThrow(() -> new BoardNotFoundException("찾는 게시글이 없습니다."));
+                .orElseThrow(() -> new BoardNotFoundException(NOT_FOUND_BOARD_MESSAGE));
 
         return BoardResponseWithId.builder()
                 .id(board.getId())
@@ -64,12 +65,16 @@ public class BoardService {
     @Transactional
     public void editBoard(BoardPostRequest boardPostRequest, Long boardId) {
         Board board = boardRepository.findById(boardId).orElseThrow(
-                () -> new BoardNotFoundException("찾는 게시글이 없습니다."));
+                () -> new BoardNotFoundException(NOT_FOUND_BOARD_MESSAGE));
 
         board.editBoard(boardPostRequest);
     }
 
 
+    public void deleteBoard(Long boardId) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new BoardNotFoundException(NOT_FOUND_BOARD_MESSAGE));
 
-
+        boardRepository.delete(board);
+    }
 }

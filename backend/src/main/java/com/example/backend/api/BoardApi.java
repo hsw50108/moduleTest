@@ -6,6 +6,7 @@ import com.example.backend.api.response.board.BoardResponseWithId;
 import com.example.backend.service.BoardService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,11 +50,14 @@ public class BoardApi {
 
     // 게시글 수정
     @PatchMapping("/{boardId}")
-    public void editBoard(@PathVariable Long boardId, @RequestBody BoardPostRequest boardPostRequest) {
+    public void editBoard(@PathVariable Long boardId,
+            @RequestBody BoardPostRequest boardPostRequest) {
         boardService.editBoard(boardPostRequest, boardId);
     }
 
     // 게시글 삭제
-
-
+    @DeleteMapping("/{boardId}")
+    public void deleteBoard(@PathVariable Long boardId) {
+        boardService.deleteBoard(boardId);
+    }
 }

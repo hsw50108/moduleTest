@@ -1,7 +1,7 @@
 package com.example.backend.api;
 
 import com.example.backend.api.request.UpdateCustomerDetailRequest;
-import com.example.backend.api.response.CustomerResponse;
+import com.example.backend.api.response.customer.CustomerResponse;
 import com.example.backend.service.CustomerService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

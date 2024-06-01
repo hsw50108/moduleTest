@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.api.request.UpdateCustomerDetailRequest;
-import com.example.backend.api.response.CustomerResponse;
+import com.example.backend.api.response.customer.CustomerResponse;
 import com.example.backend.entity.Customer;
 import com.example.backend.entity.User;
 import com.example.backend.exception.customer.CustomerNotFoundException;

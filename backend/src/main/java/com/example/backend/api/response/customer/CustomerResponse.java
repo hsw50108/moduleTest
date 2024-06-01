@@ -1,4 +1,4 @@
-package com.example.backend.api.response;
+package com.example.backend.api.response.customer;
 
 import java.time.LocalDate;
 import lombok.Builder;
